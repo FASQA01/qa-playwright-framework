@@ -1,0 +1,98 @@
+[
+  {
+    "id": "TC01",
+    "title": "Login with valid credentials",
+    "type": "positive",
+    "steps": [
+      "Navigate to the login page",
+      "Enter a valid registered username in the username field",
+      "Enter the correct matching password",
+      "Click the Login button"
+    ],
+    "expected": "User is authenticated and redirected to the home/dashboard page; no error message is shown."
+  },
+  {
+    "id": "TC02",
+    "title": "Login with valid username and incorrect password",
+    "type": "negative",
+    "steps": [
+      "Navigate to the login page",
+      "Enter a valid registered username",
+      "Enter an incorrect password",
+      "Click the Login button"
+    ],
+    "expected": "Login is rejected and an 'Invalid username or password' error is displayed; user remains on the login page."
+  },
+  {
+    "id": "TC03",
+    "title": "Login with unregistered username and any password",
+    "type": "negative",
+    "steps": [
+      "Navigate to the login page",
+      "Enter a username that does not exist in the system",
+      "Enter any password",
+      "Click the Login button"
+    ],
+    "expected": "Login is rejected and the generic 'Invalid username or password' error is displayed (no details revealing whether the account exists)."
+  },
+  {
+    "id": "TC04",
+    "title": "Login with locked-out account using correct credentials",
+    "type": "negative",
+    "steps": [
+      "Ensure the test account is in locked-out state",
+      "Navigate to the login page",
+      "Enter the locked account's valid username and correct password",
+      "Click the Login button"
+    ],
+    "expected": "Login is blocked and a 'Your account is locked. Contact support' (or equivalent) error is displayed; user is not authenticated."
+  },
+  {
+    "id": "TC05",
+    "title": "Login with both fields empty",
+    "type": "edge",
+    "steps": [
+      "Navigate to the login page",
+      "Leave the username field empty",
+      "Leave the password field empty",
+      "Click the Login button"
+    ],
+    "expected": "Login is not submitted; validation messages for both required fields are displayed and the user remains on the login page."
+  },
+  {
+    "id": "TC06",
+    "title": "Login with password field empty only",
+    "type": "edge",
+    "steps": [
+      "Navigate to the login page",
+      "Enter a valid registered username",
+      "Leave the password field empty",
+      "Click the Login button"
+    ],
+    "expected": "Login is not submitted; a 'Password is required' validation message is displayed and no authentication occurs."
+  },
+  {
+    "id": "TC07",
+    "title": "Login with username field empty only",
+    "type": "edge",
+    "steps": [
+      "Navigate to the login page",
+      "Leave the username field empty",
+      "Enter a valid password",
+      "Click the Login button"
+    ],
+    "expected": "Login is not submitted; a 'Username is required' validation message is displayed and no authentication occurs."
+  },
+  {
+    "id": "TC08",
+    "title": "Account locks out after repeated failed login attempts",
+    "type": "edge",
+    "steps": [
+      "Navigate to the login page",
+      "Enter a valid username and an incorrect password",
+      "Click the Login button repeatedly up to and beyond the configured threshold (e.g., 5 attempts)",
+      "Attempt login once more with the correct password"
+    ],
+    "expected": "After the threshold is reached the account is locked; further attempts, including correct credentials, are rejected with a lock-out error message."
+  }
+]
